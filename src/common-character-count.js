@@ -12,9 +12,29 @@ const { NotImplementedError } = require('../lib');
  * Strings have 3 common characters - 2 "a"s and 1 "c".
  */
 
-function getCommonCharacterCount(/* s1, s2 */) {
-  // Remove line below and write your code here
-  throw new NotImplementedError('Not implemented');
+function getCommonCharacterCount(s1, s2) {
+
+  const letterCountS1 = {}
+  for (const letter of s1) {
+    letterCountS1[letter] = (letterCountS1[letter] || 0) + 1;
+  }
+
+  const letterCountS2 = {};
+  for (const letter of s2) {
+    letterCountS2[letter] = (letterCountS2[letter] || 0) + 1;
+  }
+
+  let count = 0;
+
+  for (const letter in letterCountS1) {
+    if (letterCountS2[letter]) {
+      count += Math.min(letterCountS2[letter], letterCountS1[letter]);
+    }
+  }
+
+  const result = count;
+  
+  return result;
 }
 
 module.exports = {
